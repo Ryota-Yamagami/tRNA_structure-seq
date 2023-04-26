@@ -127,7 +127,7 @@ def tRNAstructureseq(shapemapper_data, output_folder):
         tRNA_name=df.iloc[i]["B"]
         tRNA_name=tRNA_name.replace("-accept.ct", "")
         tRNA_name=tRNA_name.replace("  ", "")
-        tRNA_name=tRNA_name.replace('reference_ct/', '')
+        tRNA_name=tRNA_name.replace('Structure_seq_analysis/reference_ct/', '')
         Sensitivity=df.iloc[i+3]["B"]
         Sensitivity=Sensitivity[-7:-1]
         #print("Sensitivity: "+Sensitivity)
