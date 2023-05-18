@@ -3,6 +3,7 @@
 #Copy and paste the ShapeMapper output folder and put it into a working directory.
 
 import os
+import time
 import glob
 import numpy as np
 import subprocess
@@ -136,8 +137,8 @@ def tRNAstructureseq(shapemapper_data, output_folder):
         #print("PPV: "+PPV)
         MCC=math.sqrt(float(Sensitivity)*float(PPV))
         #print("MCC: "+str(MCC))
-        summarized_data=summarized_data.append({"tRNA":tRNA_name, "Sensitivity":Sensitivity,
-                                            "PPV":PPV, "MCC":float(MCC)}, ignore_index=True)
+        df_summary=pd.DataFrame({"tRNA":[tRNA_name], "Sensitivity":[Sensitivity], "PPV":[PPV], "MCC":[float(MCC)]})
+        summarized_data=pd.concat([summarized_data, df_summary], ignore_index=True)
     print('Structure prediction accuracy:')
     print(summarized_data)
     print('saving dataframe as a csv file (A_Summarized_MFE_data.csv)')
@@ -173,4 +174,8 @@ def main():
     tRNAstructureseq(args.shapemapper, args.output_folder)
 
 if __name__ == '__main__':
+    t1 = time.time()
     main()
+    t2 = time.time()
+    elapsed_time = t2-t1
+    print(f"Elapsed_time: {elapsed_time} sec")

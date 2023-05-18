@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import os
+import time
 import glob
 import subprocess
 from subprocess import PIPE
@@ -138,4 +139,8 @@ def main():
     gtRNA_setup()
 
 if __name__ == '__main__':
+    t1 = time.time()
     main()
+    t2 = time.time()
+    elapsed_time = t2-t1
+    print(f"Elapsed_time: {elapsed_time} sec")
